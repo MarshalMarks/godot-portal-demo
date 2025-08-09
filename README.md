@@ -7,4 +7,3 @@ In your terminal, run the following commands in order:
 1) ```git add .```
 2) ```git commit -a -m "/*commit message*/"```
 3) ```git push```
-After pushing an update, let me know what you changed so I can pull your update.
