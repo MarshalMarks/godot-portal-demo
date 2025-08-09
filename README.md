@@ -1,6 +1,6 @@
 # Godot Portal Demo
 ## Setup
-1) In your terminal, run ```git clone https://github.com/MarshalMarks/godot-portal-demo``` into your directory of choice.
+1) In your terminal, run ```git clone https://github.com/MarshalMarks/godot-portal-demo``` in your directory of choice.
 2) Open the resulting folder in Godot.
 ## Pushing updates
 In your terminal, run the following commands in order:
