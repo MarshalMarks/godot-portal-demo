@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cavc4ur0hiu7m"]
+[gd_scene load_steps=6 format=3 uid="uid://cavc4ur0hiu7m"]
 
 [ext_resource type="Script" path="res://scenes/CharacterBody3D.gd" id="1_4b35o"]
 
@@ -7,6 +7,9 @@
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_cg4ox"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vds7v"]
+radius = 0.25
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0cgy1"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -32,7 +35,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Head"]
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_0cgy1")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-light_energy = 16.0
+transform = Transform3D(1, 0, 0, 0, 0.500348, 0.865825, 0, -0.865825, 0.500348, 0, 3.79478, 0)
 light_indirect_energy = 5.876
 shadow_enabled = true
