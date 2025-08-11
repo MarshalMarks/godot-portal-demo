@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cavc4ur0hiu7m"]
+[gd_scene load_steps=13 format=3 uid="uid://cavc4ur0hiu7m"]
 
 [ext_resource type="Script" path="res://scenes/CharacterBody3D.gd" id="1_4b35o"]
 
@@ -11,6 +11,22 @@ size = Vector3(0.3, 10, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gd0o6"]
 size = Vector3(0.3, 4, 10)
+
+[sub_resource type="QuadMesh" id="QuadMesh_hqohh"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_smkmr"]
+viewport_path = NodePath("World/WormholeExit/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ck7f1"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_smkmr")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qpbq4"]
+viewport_path = NodePath("World/WormholeExit2/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s5dy0"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_qpbq4")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vds7v"]
 radius = 0.25
@@ -45,6 +61,38 @@ shape = SubResource("BoxShape3D_gd0o6")
 transform = Transform3D(1, 0, 0, 0, 0.500348, 0.865825, 0, -0.865825, 0.500348, 0, 3.79478, 0)
 light_indirect_energy = 5.876
 shadow_enabled = true
+
+[node name="WormholeEntrance" type="Node3D" parent="World"]
+transform = Transform3D(3.57746e-08, 0, -3, 0, 3, 0, 3, 0, 3.57746e-08, 9.699, 1.5, -2.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/WormholeEntrance"]
+transform = Transform3D(1, 0, 8.88178e-16, 0, 1, 0, -8.88178e-16, 0, 1, 0, 0, 0)
+mesh = SubResource("QuadMesh_hqohh")
+surface_material_override/0 = SubResource("StandardMaterial3D_ck7f1")
+
+[node name="WormholeExit" type="Node3D" parent="World"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.699, 2, 3)
+
+[node name="SubViewport" type="SubViewport" parent="World/WormholeExit"]
+
+[node name="Camera3D" type="Camera3D" parent="World/WormholeExit/SubViewport"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.699, 1.5, 2.5)
+
+[node name="WormholeEntrance2" type="Node3D" parent="World"]
+transform = Transform3D(-1.31134e-07, 0, -3, 0, 3, 0, 3, 0, -1.31134e-07, 9.699, 1.5, 2.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/WormholeEntrance2"]
+mesh = SubResource("QuadMesh_hqohh")
+skeleton = NodePath("../../WormholeEntrance2")
+surface_material_override/0 = SubResource("StandardMaterial3D_s5dy0")
+
+[node name="WormholeExit2" type="Node3D" parent="World"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9.699, 1, -2.5)
+
+[node name="SubViewport" type="SubViewport" parent="World/WormholeExit2"]
+
+[node name="Camera3D" type="Camera3D" parent="World/WormholeExit2/SubViewport"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.699, 1.5, -2.5)
 
 [node name="Player" type="CharacterBody3D" parent="."]
 script = ExtResource("1_4b35o")
