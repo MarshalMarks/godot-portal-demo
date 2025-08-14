@@ -41,3 +41,7 @@ func _physics_process(delta):
 		velocity.y = jump_velocity
 
 	move_and_slide()
+
+		# Broadcast position if it changed
+	if get_position_delta().length_squared() > 0:
+		Globals.player_pos.emit(position)
