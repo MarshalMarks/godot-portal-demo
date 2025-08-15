@@ -58,7 +58,7 @@ entrance_position = Vector3(5, 1.5, -2.5)
 entrance_rotation = Vector3(90, 0, 90)
 entrance_size = Vector2(3, 3)
 exit_position = Vector3(9.699, 1.5, 2.5)
-exit_rotation = Vector3(0, 90, 0)
+exit_rotation = Vector3(0, -90, 0)
 exit_size = Vector2(3, 3)
 
 [node name="Wormhole" type="Node3D" parent="World"]
@@ -67,7 +67,7 @@ entrance_position = Vector3(9.699, 1.5, 2.5)
 entrance_rotation = Vector3(90, 0, 90)
 entrance_size = Vector2(3, 3)
 exit_position = Vector3(5, 1.5, -2.5)
-exit_rotation = Vector3(0, 90, 0)
+exit_rotation = Vector3(0, -90, 0)
 exit_size = Vector2(3, 3)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World"]
