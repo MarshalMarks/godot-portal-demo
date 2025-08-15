@@ -21,12 +21,13 @@ func _input(event):
 		camera_rotation_x += -event.relative.y * mouse_sensitivity
 		camera_rotation_x = clamp(camera_rotation_x, deg_to_rad(-90), deg_to_rad(90))
 		head.rotation.x = camera_rotation_x
+		Globals.camera_rot.emit(head.rotation)
 
 func _physics_process(delta):
 	# gravity
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-
+	
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	var direction = Vector3(input_dir.x, 0, input_dir.y).rotated(Vector3(0,1,0), self.global_rotation.y).normalized()
 	if direction:
@@ -35,13 +36,13 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, slowdown_multiplier * delta)
 		velocity.z = move_toward(velocity.z, 0, slowdown_multiplier * delta)
-
+	
 	# handle jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity
-
+	
 	move_and_slide()
-
+	
 		# Broadcast position if it changed
 	if get_position_delta().length_squared() > 0:
 		Globals.player_pos.emit(position)
