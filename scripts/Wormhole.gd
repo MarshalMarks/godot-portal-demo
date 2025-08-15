@@ -1,8 +1,6 @@
 extends Node3D
 
 
-@export var entrance_position: Vector3
-@export var entrance_rotation: Vector3
 @export var entrance_size: Vector2
 @export var exit_position: Vector3
 @export var exit_rotation: Vector3
@@ -44,8 +42,7 @@ func _init():
 func _ready():
 	
 	# Parent Nodes
-	Entrance.position = entrance_position
-	Entrance.rotation_degrees = entrance_rotation
+	Entrance.transform = transform
 	Exit.position = exit_position
 	Exit.rotation_degrees = exit_rotation
 	
