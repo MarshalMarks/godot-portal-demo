@@ -52,6 +52,7 @@ func _ready():
 	# Exit Node
 	ExitCamera.transform = Exit.transform
 	Globals.player_pos.connect(on_player_pos)
+	Globals.camera_rot.connect(on_camera_rot)
 	
 	# Entrance Node
 	EntranceMeshInstance.mesh = EntranceMesh
@@ -59,7 +60,8 @@ func _ready():
 	EntranceMeshMaterial.set_shader_parameter("tex", ExitViewport.get_texture())
 
 func on_player_pos(pos: Vector3):
-	var dist_from_entrance = pos - Entrance.position
-	ExitCamera.position =  Exit.basis * dist_from_entrance + Exit.position
-	ExitCamera.look_at(Exit.position)
+	var dist_from_entrance = pos - Entrance.global_position
+	ExitCamera.global_position = dist_from_entrance + Exit.global_position
 
+func on_camera_rot(rot: Vector3):
+	ExitCamera.global_rotation = rot

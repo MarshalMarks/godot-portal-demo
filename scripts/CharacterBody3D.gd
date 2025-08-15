@@ -21,7 +21,7 @@ func _input(event):
 		camera_rotation_x += -event.relative.y * mouse_sensitivity
 		camera_rotation_x = clamp(camera_rotation_x, deg_to_rad(-90), deg_to_rad(90))
 		head.rotation.x = camera_rotation_x
-		Globals.camera_rot.emit(head.rotation)
+		Globals.camera_rot.emit(head.global_rotation)
 
 func _physics_process(delta):
 	# gravity
@@ -45,4 +45,4 @@ func _physics_process(delta):
 	
 		# Broadcast position if it changed
 	if get_position_delta().length_squared() > 0:
-		Globals.player_pos.emit(position)
+		Globals.player_pos.emit(global_position)
