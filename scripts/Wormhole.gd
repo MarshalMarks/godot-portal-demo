@@ -11,7 +11,7 @@ extends Node3D
 var Entrance: Node3D
 var EntranceMeshInstance: MeshInstance3D
 var EntranceMesh: PlaneMesh
-var EntranceMeshMaterial: StandardMaterial3D
+var EntranceMeshMaterial: ShaderMaterial
 
 var Exit: Node3D
 var ExitViewport: SubViewport
@@ -30,7 +30,7 @@ func _init():
 	# Entrance Nodes
 	EntranceMeshInstance = MeshInstance3D.new()
 	EntranceMesh = PlaneMesh.new()
-	EntranceMeshMaterial = StandardMaterial3D.new()
+	EntranceMeshMaterial = load("res://assets/portal.tres")
 	
 	Entrance.add_child(EntranceMeshInstance)
 	
@@ -56,10 +56,10 @@ func _ready():
 	# Entrance Node
 	EntranceMeshInstance.mesh = EntranceMesh
 	EntranceMeshInstance.set_surface_override_material(0, EntranceMeshMaterial)
-	EntranceMeshMaterial.albedo_texture = ExitViewport.get_texture()
+	EntranceMeshMaterial.set_shader_parameter("tex", ExitViewport.get_texture())
 
 func on_player_pos(pos: Vector3):
-	ExitCamera.position = pos - Entrance.position + Exit.position
+	var dist_from_entrance = pos - Entrance.position
+	ExitCamera.position =  Exit.basis * dist_from_entrance + Exit.position
 	ExitCamera.look_at(Exit.position)
-	
-	# TODO: to handle differing orientations maybe account the basis vectors of the player relative to the portal?
+
