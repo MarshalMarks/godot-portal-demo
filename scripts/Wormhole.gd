@@ -10,6 +10,8 @@ var Entrance: Node3D
 var EntranceMeshInstance: MeshInstance3D
 var EntranceMesh: PlaneMesh
 var EntranceMeshMaterial: ShaderMaterial
+var EntranceCollider: Area3D
+var EntranceColliderShape: CollisionShape3D
 
 var Exit: Node3D
 var ExitViewport: SubViewport
@@ -29,8 +31,12 @@ func _init():
 	EntranceMeshInstance = MeshInstance3D.new()
 	EntranceMesh = PlaneMesh.new()
 	EntranceMeshMaterial = load("res://assets/portal.tres")
+	EntranceCollider = Area3D.new()
+	EntranceColliderShape = CollisionShape3D.new()
 	
 	Entrance.add_child(EntranceMeshInstance)
+	Entrance.add_child(EntranceCollider)
+	EntranceCollider.add_child(EntranceColliderShape)
 	
 	# Exit Nodes
 	ExitViewport = SubViewport.new()
@@ -55,6 +61,8 @@ func _ready():
 	EntranceMeshInstance.mesh = EntranceMesh
 	EntranceMeshInstance.set_surface_override_material(0, EntranceMeshMaterial)
 	EntranceMeshMaterial.set_shader_parameter("tex", ExitViewport.get_texture())
+	EntranceColliderShape.shape = EntranceMesh.create_convex_shape()
+	EntranceCollider.body_entered.connect(on_body_entered)
 
 func on_player_pos(pos: Vector3):
 	var dist_from_entrance = pos - Entrance.global_position
@@ -62,3 +70,7 @@ func on_player_pos(pos: Vector3):
 
 func on_camera_rot(rot: Vector3):
 	ExitCamera.global_rotation = rot
+
+func on_body_entered(body: Node3D):
+	if (global_rotation.dot(ExitCamera.global_rotation) > 0):
+		Globals.teleport_to.emit(Exit.global_position)
