@@ -14,6 +14,7 @@ var camera_rotation_x: float = 0.0
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Globals.teleport_to.connect(on_teleport_to)
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -46,3 +47,7 @@ func _physics_process(delta):
 		# Broadcast position if it changed
 	if get_position_delta().length_squared() > 0:
 		Globals.player_pos.emit(head.global_position)
+
+func on_teleport_to(pos: Vector3):
+	global_position = pos
+
