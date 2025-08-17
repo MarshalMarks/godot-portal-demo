@@ -43,8 +43,8 @@ func _ready():
 	
 	# Parent Nodes
 	Entrance.transform = transform
-	Exit.position = exit_position
-	Exit.rotation_degrees = exit_rotation
+	Exit.global_position = exit_position
+	Exit.global_rotation_degrees = exit_rotation
 	
 	# Exit Node
 	ExitCamera.transform = Exit.transform
