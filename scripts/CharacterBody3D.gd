@@ -45,4 +45,4 @@ func _physics_process(delta):
 	
 		# Broadcast position if it changed
 	if get_position_delta().length_squared() > 0:
-		Globals.player_pos.emit(global_position)
+		Globals.player_pos.emit(head.global_position)
