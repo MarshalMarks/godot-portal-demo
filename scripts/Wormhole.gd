@@ -4,7 +4,6 @@ extends Node3D
 @export var entrance_size: Vector2
 @export var exit_position: Vector3
 @export var exit_rotation: Vector3
-@export var exit_size: Vector2
 
 var Entrance: Node3D
 var EntranceMeshInstance: MeshInstance3D

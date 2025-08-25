@@ -95,7 +95,6 @@ transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 
 script = ExtResource("1_tnucg")
 entrance_size = Vector2(6, 6)
 exit_position = Vector3(30, 1.707, 0)
-exit_size = Vector2(6, 6)
 
 [node name="Room2" type="Node3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0)
