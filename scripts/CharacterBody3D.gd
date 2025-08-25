@@ -49,5 +49,5 @@ func _physics_process(delta):
 		Globals.player_pos.emit(head.global_position)
 
 func on_teleport_to(pos: Vector3):
-	global_position = pos
+	global_position = pos - head.position
 

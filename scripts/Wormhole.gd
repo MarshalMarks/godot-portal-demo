@@ -72,5 +72,7 @@ func on_camera_rot(rot: Vector3):
 	ExitCamera.global_rotation = rot
 
 func on_body_entered(body: Node3D):
-	if (global_rotation.dot(ExitCamera.global_rotation) > 0):
-		Globals.teleport_to.emit(Exit.global_position)
+	var dist_to_portal = body.global_position - global_position
+	
+	if (dist_to_portal.dot(ExitCamera.global_rotation) < 0):
+		Globals.teleport_to.emit(Exit.global_position + dist_to_portal)
